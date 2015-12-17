@@ -10,7 +10,7 @@ if [ "$SCRIPTPATH" = "/tmp" ] ; then
 fi
 
 mkdir -p $HOME/rpmbuild/{BUILD,RPMS,SOURCES,SRPMS}
-#ln -sf $SCRIPTPATH/SPECS $HOME/rpmbuild/SPECS
+ln -s $SCRIPTPATH/SPECS $HOME/rpmbuild/SPECS
 echo '%_topdir '$HOME'/rpmbuild' > $HOME/.rpmmacros
 
 # Install java
@@ -24,6 +24,8 @@ wget http://apache.mirrors.pair.com/maven/maven-3/3.3.9/binaries/apache-maven-3.
 tar -xzvf apache-maven-3.3.9-bin.tar.gz
 echo "export PATH=$PATH:/opt/apache-maven-3.3.9/bin" | sudo tee /etc/profile.d/maven.sh
 echo "export JAVA_HOME=/usr/lib/jvm/java" | sudo tee /etc/profile.d/java.sh
+chmod 644 /etc/profile.d/maven.sh
+chmod 644 /etc/profile.d/java.sh
 
 # Get Salesforce Dataloader source
 git clone https://github.com/forcedotcom/dataloader
